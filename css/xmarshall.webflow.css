@@ -1613,8 +1613,7 @@ a {
   .section {
     margin-right: 0px;
     margin-left: 0px;
-    padding-right: 300px;
-    padding-left: 300px;
+    padding: 80px 300px;
   }
 
   .section.footer {
@@ -1791,11 +1790,20 @@ a {
   .fp-game-grid {
     padding-left: 0px;
     justify-items: center;
+    grid-template-areas: "Area";
+    -ms-grid-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .fp-game-title {
+    font-size: 25px;
   }
 
   .fp-game-image {
     position: static;
     display: inline-block;
+    width: 400px;
+    height: 360px;
     float: none;
     clear: none;
     text-align: left;
@@ -1807,12 +1815,20 @@ a {
     object-fit: fill;
   }
 
+  .fp-game-button {
+    font-size: 18px;
+  }
+
   .game-page-content {
     grid-column-gap: 74px;
   }
 
   .heading-3 {
     margin-top: 0px;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 auto;
+    -ms-flex: 0 auto;
+    flex: 0 auto;
   }
 
   .card-heading {
@@ -1822,8 +1838,16 @@ a {
   }
 
   .indented-div-block {
-    margin-left: 290px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: 0px;
     padding-left: 0px;
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
   }
 }
 
@@ -2424,6 +2448,15 @@ a {
     align-self: auto;
     -ms-grid-column-align: center;
     justify-self: center;
+  }
+
+  #w-node-_2c2d685d-c845-c942-3611-36293ca9e6da-395d0d69 {
+    -webkit-align-self: end;
+    -ms-flex-item-align: end;
+    -ms-grid-row-align: end;
+    align-self: end;
+    -ms-grid-column-align: start;
+    justify-self: start;
   }
 }
 
