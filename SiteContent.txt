@@ -1,0 +1,59 @@
+bfcc-description
+Details:
+Near the end of our contract with our external partners, Aspyr needed to transfer knowledge, tools, and pipelines to our internal engineers.
+And so shortly after the project's launch, I was chosen to lead that transition. In the process, I developed comprehensive documentation to onboard new engineers and took advantage of many opportunites to improve our tools and build scripts to help us iterate at a faster clip.
+One such example was the expansion of our GUI-based cooked asset editor into a command line tool bulk asset modification and analysis. Using this, we created lightweight asset configurations to package with our dedicated server.
+
+From there I began the process of porting our dedicated server configuration from Windows to Linux, so we could reliably host a larger number of servers for cheaper. As part of this process, I converted our project's build system from MSVC to CMake, replaced usage of the Windows API with Unix or other cross-platform alternatives, and repackaged our assets for compatiblity with an Ubuntu server.
+This offered me a great opportunity to learn cross-platform architecture, SDL, and Linux development environments. The latter of which was a first not juist for myself, but Aspyr broadly. And so I took extra care to docment and spread my experiences to better prepare us for other Linux ports in the future. This past December, I gave a department-wide talk on the topic
+
+
+headsup-description
+Details:
+For this title, I had the pleasure of working alongside our lead Web Engineer to create built-in Twitch integration for two gamemodes.
+In addition to implementing all the related game logic, I got to prototype the Twitch bot acts as our Twitch endpoint controller, explore how API features could integrate into our gameloop, and concoct solutions to gameplay limitations caused by Twitch Delay.
+Following its completion, I whipped up a shader-based asset filter to accomodate colorblind players to ship alongside the Twitch patch.
+humankind-description
+Details:
+Initially release on PC, Aspyr ported Humankind onto PS4/5 and XB1/XBS. I worked with the optimization team to ensure a smooth gameplay experierience for our Gen 8 users.
+In the process I deepened my understanding of Unity and XBox profiling tools for memory and CPU utilization, developed solid strategies for addressing core performance problems, and became the subject-matter expert for all things related to asset loading on that project.
+The initial PC release of Humankind was shipped with a major structural issue I spent most of my time wrestling with: nearly all loading was performed synchronously and the expectation of that sychronicity was woven into the fabric of nearly every feature. For Gen 8, the result included 10+ minute loading times into gameplay, hitches during that loading in excess of what's allowed for XBox and Playstation certification, and frequent hitches during gameplay sometimes lasting multiple minutes. Many of the issues I resolved related to one of these three topics.
+Addressing them involved a combination of the following strategies. And while each had their limitations, there was something to be learned and gained from each.
+strategies:
+Async Refactor
+Sychronous loading dependencies were near universal in the Humankind code base, effecting everything from the AI and save system to terrain rendering and UI. Still, refactoring large swaths of the code base to run asynchronously was a very necessary measure.
+In many cases, the process was straightforward. Create async alternatives to Amplitude's custom loading wrapper and refactor critical callstacks to utilize callbacks and/or coroutines.
+The hard part came with resolving any issue downstream of the async refactor. Along the way, I delved into a variety of the various affected subsystems and used the expertise of colleagues familair with them to accelerate the process.
+Asset Use Analysis & Profiling
+When working on ports, you often have limited information on what assets are used in your game, when they're used, and their intended lifecycle. In these situations, using handmade data collection and instrumentation can be incredibly helpful.
+On Humankind I did some custom analysis on the load screens to get a better idea of our asset loading dependencies and overall utilization.
+This process revealed a large amounts of time wasted on failed dependency resolution, prompting me to reorder certain load processes and kickoff certain load requests in bulk during periods of otherwise infrequent disk utilization. This process also revealed a few ways in which preloading could improve our player experience.
+Preload
+Analyzing the game's asset usage revealed a set of large assets used consistently through gameplay regardless of the player's progress or playstyle. These assets were migrated into an assetbundle that gets loaded by Unity's preload system, reducing our load times and minimizing memory fragmentation during extended periods of gameplay. On Gen 8, heavy fragmentation was a persistent cause of out-of-memory crashes.
+
+
+
+upbs-description:
+Team: Xavier Marshall, Brett Fajen, Nate Powell, AJ
+
+Details:
+The Unity Playback Suite is a collection of tools designed for and with experimental researchers creating simulations in Unity.
+It provides research teams frame-by-frame experimental playbacks using the same data collected for analysis, the ability to create custom visualizations from infinite camera perspectives, and the extrapolation of new data and video not collected during experimental trials.
+Built of the Unity Experiemnt Framework, a popular toolkit that streamlines data collection pipelines, UPBS is compatible with any experimental simulation that examine visual stimulation.
+It's design seeks to emulate a low-code model for simple use-cases, while providing the flexibility and guidance for adapting complex experimental designs.
+UPBS is built off the Unity Experiment Framework, a popular toolkit that streamlines data collection pipelines, and prioritizes user friendliness and flexibility.
+
+On my Github, you can find more details, extensive documentation/examples, and releases for this ongoing project.
+A copy of our manuscript can be found here as we're currently in the process of publishing with Experimetal Research Methods.
+This project was born out of a prototype developed during Undergrad and became one of the main focuses of my Master's in Cognitive Science.
+
+This is personally one of the largest software architecture endevors I've tackled as a solo programmer, and have had the pleasure of working with the folks at RPI's PandA Lab for guidance and feedback on how to best adapt these tools to the needs of themselves and other researchers.
+
+other-description
+Unannounced project:
+PS5, XBS, Switch
+To help deliver this port to successful Alpha and Beta milestones, I resolved progression-blocking heap corruption crashes, implemented trophies & activities on PS5, and reintegrated steamworks into our currently active builds.
+
+
+Star Wars: Knights of the Old Republic Remake:
+In my brief time working on this title, I had the pleasure of working with our Cinematic Design team to improve our internal tooling.
